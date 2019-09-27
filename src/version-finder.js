@@ -23,6 +23,7 @@ const StyledVersionFinder = styled(VersionFinder)`
 
   ${FoundGames}, ${GameVersions} {
     flex: 1;
+overflow: auto;
   }
 
   ${GameVersions} {
