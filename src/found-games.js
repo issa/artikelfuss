@@ -4,20 +4,20 @@ import styled from "styled-components/macro";
 
 import FoundGame from "./found-game";
 
-const FoundGames = styled(function({ className, search, chooseVersion }) {
+const FoundGames = styled(function({ className, search, gameID, chooseGame }) {
   return (
     <div className={className}>
       {search.loading && <div>loading...</div>}
       {search.error && <div>Error: {search.error.message}</div>}
       {search.result && (
         <div>
-          <div>Results: {search.result.length}</div>
           <ul>
             {search.result.map(game => (
               <FoundGame
                 key={game.name}
+                active={game.objectid === gameID}
                 game={game}
-                chooseVersion={chooseVersion}
+                onClick={() => chooseGame(game.objectid)}
               />
             ))}
           </ul>
@@ -25,6 +25,12 @@ const FoundGames = styled(function({ className, search, chooseVersion }) {
       )}
     </div>
   );
-})``;
+})`
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 export default FoundGames;

@@ -1,22 +1,35 @@
 //; -*- mode: rjsx;-*-
-import React, { useState } from "react";
+import React from "react";
+import styled from "styled-components/macro";
 
-import GameVersions from "./game-versions";
-
-function FoundGame({ game = {}, chooseVersion }) {
-  const { name, objectid: id, objecttype: type } = game;
-  const [showDetails, setShowDetails] = useState(false);
-
-  function handleClick(event) {
-    setShowDetails(true);
-  }
+function FoundGame({ className, game = {}, active, onClick }) {
+  const { name } = game;
 
   return (
-    <li onClick={handleClick}>
+    <li className={className} onClick={onClick}>
       {name}
-      {showDetails && <GameVersions id={id} chooseVersion={chooseVersion} />}
     </li>
   );
 }
 
-export default FoundGame;
+const StyledFoundGame = styled(FoundGame)`
+  margin-left: 0;
+  padding-left: 1em;
+  line-height: 2em;
+  height: 2em;
+  border-bottom: 1px solid #d1d4d7;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  cursor: pointer;
+  background-color: ${props => (props.active ? "#ddd" : "inherit")};
+
+  &:first-child {
+    border-top: 1px solid #d1d4d7;
+  }
+
+  &:hover {
+    background: #ccc;
+  }
+`;
+
+export default StyledFoundGame;

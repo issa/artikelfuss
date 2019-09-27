@@ -1,12 +1,13 @@
 //; -*- mode: rjsx;-*-
 import React from "react";
+import styled from "styled-components/macro";
 import { useAsync } from "react-async-hook";
 
 import GameVersion from "./game-version";
 import { findVersions } from "./api";
 
-function GameVersions({ id, chooseVersion }) {
-  const asyncThing = useAsync(findVersions, [id, "thing"]);
+function GameVersions({ className, gameID, chooseVersion }) {
+  const asyncThing = useAsync(findVersions, [gameID]);
 
   const getVersion = version => (
     <GameVersion
@@ -19,12 +20,23 @@ function GameVersions({ id, chooseVersion }) {
   //const getItems = result => result.item.links.boardgameversion;
 
   return (
-    <div>
+    <div className={className}>
       {asyncThing.loading && <div>Loading</div>}
       {asyncThing.error && <div>Error: {asyncThing.error.message}</div>}
-      {asyncThing.result && <ul>{asyncThing.result.items.map(getVersion)}</ul>}
+      {asyncThing.result && asyncThing.result.items && (
+        <ul>{asyncThing.result.items.map(getVersion)}</ul>
+      )}
     </div>
   );
 }
 
-export default GameVersions;
+const StyledGameVersions = styled(GameVersions)`
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1em;
+  }
+`;
+
+export default StyledGameVersions;

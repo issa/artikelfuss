@@ -1,5 +1,5 @@
 //; -*- mode: rjsx;-*-
-import React, { useMemo, useState } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 
 import MissingImage from "./missing-image";
@@ -19,13 +19,13 @@ const GameVersion = styled(function({ className, version, chooseVersion }) {
 })`
   display: flex;
 
-  &:first-child {
-    margin-top: 1em;
+  &:hover {
+    background: #ccc;
   }
 
+  padding: .5em;
+
   &:not(:last-child) {
-    margin-bottom: 1em;
-    padding-bottom: 1em;
     border-bottom: 1px solid #d1d4d7;
   }
 

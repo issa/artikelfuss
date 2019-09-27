@@ -4,10 +4,10 @@ import styled from "styled-components/macro";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
 import { useAsync } from "react-async-hook";
 
-import FoundGames from "./found-games";
 import Header from "./header";
 import SearchBar from "./search-bar";
 import Spieleinfo from "./spieleinfo";
+import VersionFinder from "./version-finder";
 
 import { searchGame } from "./api";
 
@@ -38,14 +38,22 @@ const useSearchGame = (initialText = "") => {
 };
 
 function App(props) {
+  const [gameID, setGameID] = useState();
+  const [version, setVersion] = useState();
   const [query, setQuery, search] = useSearchGame("gloomh");
 
   function handleSearch({ target }) {
     setQuery(target.value);
+    setGameID(null);
+    setVersion(null);
   }
 
-  function chooseVersion(game, version) {
-    console.log(game, version);
+  function chooseGame(game) {
+    setGameID(game);
+  }
+
+  function chooseVersion(newVersion) {
+    setVersion(newVersion);
   }
 
   return (
@@ -55,27 +63,37 @@ function App(props) {
 
         <SearchBar query={query} handleSearch={handleSearch} />
 
-        <FoundGames search={search} chooseVersion={chooseVersion} />
+        <VersionFinder
+          search={search}
+          gameID={gameID}
+          version={version}
+          chooseGame={chooseGame}
+          chooseVersion={chooseVersion}
+        />
       </main>
-      <Spieleinfo />
+      <Spieleinfo gameID={gameID} version={version} />
     </div>
   );
 }
 
 const StyledApp = styled(App)`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
   main {
-    flex: 1 0 auto;
-    max-height: calc(100vh - 5rem);
-    overflow-y: scroll;
+    padding-bottom: 3.25rem;
+  }
+
+  ${Header}, ${SearchBar} {
+  }
+
+  ${VersionFinder} {
   }
 
   ${Spieleinfo} {
-    flex: 0 5rem;
-    box-shadow: inset 0px 3px 5px #aaa;
+    box-shadow: 0 -2px 0 0 #f5f5f5;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 30;
   }
 `;
 

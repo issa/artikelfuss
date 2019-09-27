@@ -1,4 +1,7 @@
 const findThing = async function(id, type) {
+  if (!id) {
+    return {};
+  }
   const result = await fetch(
     `/.netlify/functions/geekitems?id=${window.encodeURIComponent(
       id
@@ -12,6 +15,9 @@ const findThing = async function(id, type) {
 };
 
 const findVersions = async function(id) {
+  if (!id) {
+    return {};
+  }
   const result = await fetch(
     `/.netlify/functions/linkeditems?id=${window.encodeURIComponent(id)}`
   );
@@ -37,4 +43,4 @@ const searchGame = async function(text, abortSignal) {
   return json.msg;
 };
 
-export { findThing, findVersions, searchGame }
+export { findThing, findVersions, searchGame };
