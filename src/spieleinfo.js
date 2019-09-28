@@ -83,7 +83,7 @@ const Spieleinfo = styled(function(props) {
     const version = props.version;
     const designers = links.boardgamedesigner.map(p => p.name).join(", ");
     const artists = links.boardgameartist.map(p => p.name).join(", ");
-    const publishers = links.boardgameartist.map(p => p.name).join(", ");
+    const publishers = links.boardgamepublisher.map(p => p.name).join(", ");
 
     return `${designers}: ${version.linkedname.toUpperCase()} für ${minplayers} bis ${maxplayers} Spieler mit Illustrationen/Grafik von ${artists} bei ${publishers} ${
       version.yearpublished
