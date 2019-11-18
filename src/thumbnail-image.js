@@ -6,7 +6,7 @@ const ThumbnailImage = styled.img`
   border: 0;
   box-sizing: border-box;
   line-height: 75px;
-  max-height: 125px;
+  max-height: 75px;
   max-width: 75px;
   text-align: center;
   vertical-align: middle;

@@ -12,7 +12,7 @@ export async function handler(event) {
         objectid: id,
         objecttype: "thing",
         pageid: 1,
-        showcount: 10,
+        showcount: 50,
         sort: "yearpublished",
         subtype: "boardgameversion"
       })}`,

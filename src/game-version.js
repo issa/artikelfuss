@@ -8,12 +8,14 @@ import ThumbnailImage from "./thumbnail-image";
 const GameVersion = styled(function({ className, version, chooseVersion }) {
   return (
     <li className={className} onClick={() => chooseVersion(version)}>
-      {version.images ? (
-        <ThumbnailImage src={version.images.thumb} />
-      ) : (
-        <MissingImage />
-      )}
-      [{version.objectid}] {version.name}
+      <span>
+        {version.images ? (
+          <ThumbnailImage src={version.images.thumb} />
+        ) : (
+          <MissingImage />
+        )}
+      </span>
+      {version.name}
     </li>
   );
 })`
@@ -23,10 +25,14 @@ const GameVersion = styled(function({ className, version, chooseVersion }) {
     background: #ccc;
   }
 
-  padding: .5em;
+  padding: 0.5em;
 
   &:not(:last-child) {
     border-bottom: 1px solid #d1d4d7;
+  }
+
+  span {
+    width: 100px;
   }
 
   ${ThumbnailImage}, ${MissingImage} {
