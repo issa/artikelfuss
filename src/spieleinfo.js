@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { useAsync } from "react-async-hook";
+import cogoToast from "cogo-toast";
 
 import { findThing } from "./api";
 
@@ -9,6 +10,7 @@ const CopyClipboard = styled(function(props) {
   async function copyClipboard() {
     const result = await navigator.clipboard.writeText(props.value);
     console.log(result);
+    cogoToast.success("Artikelfuß in die Zwischenablage kopiert");
   }
 
   return (
@@ -81,13 +83,35 @@ const Spieleinfo = styled(function(props) {
       maxplaytime
     } = asyncGame.result;
     const version = props.version;
-    const designers = links.boardgamedesigner.map(p => p.name).join(", ");
-    const artists = links.boardgameartist.map(p => p.name).join(", ");
-    const publishers = version.links.boardgamepublisher.map(p => p.name).join(", ");
 
-    return `${designers}: ${version.linkedname.toUpperCase()} für ${minplayers} bis ${maxplayers} Spieler mit Illustrationen/Grafik von ${artists} bei ${publishers} ${
+    const designers = links.boardgamedesigner.map(p => p.name);
+    const artists = links.boardgameartist.map(p => p.name);
+    const publishers = version.links.boardgamepublisher.map(p => p.name);
+
+    const join = people => {
+      if (people.length === 2) {
+        return people.join(" und ");
+      } else {
+        return people.join(", ");
+      }
+    };
+
+    const numPlayers =
+      minplayers !== maxplayers
+        ? `${minplayers} bis ${maxplayers}`
+        : `${minplayers}`;
+    const playtime =
+      minplaytime !== maxplaytime
+        ? `${minplaytime} – ${maxplaytime}`
+        : `${minplaytime}`;
+
+    return `${join(
+      designers
+    )}: ${version.linkedname.toUpperCase()} für ${numPlayers} Spieler mit Illustration von ${join(
+      artists
+    )} bei ${join(publishers)} ${
       version.yearpublished
-    },  Spieldauer ${minplaytime} – ${maxplaytime} Minuten`;
+    },  Spieldauer ${playtime} Minuten`;
   };
 
   function selectWhole(event) {
@@ -98,12 +122,7 @@ const Spieleinfo = styled(function(props) {
     <footer className={props.className}>
       {asyncGame.result && props.version && (
         <>
-          <input
-            type="text"
-            readOnly
-            value={artikelfuss()}
-            onClick={selectWhole}
-          />
+          <input type="text" value={artikelfuss()} onClick={selectWhole} />
           <CopyClipboard value={artikelfuss()} />
         </>
       )}
@@ -121,8 +140,7 @@ const Spieleinfo = styled(function(props) {
 
     min-height: 28px;
     padding: 3px 8px;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 20px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
