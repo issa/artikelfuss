@@ -98,7 +98,7 @@ const Spieleinfo = styled(function(props) {
 
     const numPlayers =
       minplayers !== maxplayers
-        ? `${minplayers} bis ${maxplayers}`
+        ? `${minplayers} – ${maxplayers}`
         : `${minplayers}`;
     const playtime =
       minplaytime !== maxplaytime
@@ -107,7 +107,7 @@ const Spieleinfo = styled(function(props) {
 
     return `${join(
       designers
-    )}: ${version.linkedname.toUpperCase()} für ${numPlayers} Spieler mit Illustration von ${join(
+    )}: ${version.linkedname.toUpperCase()} für ${numPlayers} Personen mit Illustration von ${join(
       artists
     )} bei ${join(publishers)} ${
       version.yearpublished
