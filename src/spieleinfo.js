@@ -111,7 +111,7 @@ const Spieleinfo = styled(function(props) {
       artists
     )} bei ${join(publishers)} ${
       version.yearpublished
-    },  Spieldauer ${playtime} Minuten`;
+    }, Spieldauer ${playtime} Minuten`;
   };
 
   function selectWhole(event) {
