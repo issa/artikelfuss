@@ -7,7 +7,7 @@ export async function handler(event, context) {
     const games = await axios.get(
       `https://boardgamegeek.com/search/boardgame?${querystring.stringify({
         q: query,
-        showcount: 10
+        showcount: 20
       })}`,
       {
         headers: {
