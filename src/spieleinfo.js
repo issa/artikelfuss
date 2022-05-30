@@ -80,7 +80,8 @@ const Spieleinfo = styled(function(props) {
       minplayers,
       maxplayers,
       minplaytime,
-      maxplaytime
+      maxplaytime,
+      minage
     } = asyncGame.result;
     const version = props.version;
 
@@ -111,7 +112,7 @@ const Spieleinfo = styled(function(props) {
       artists
     )} bei ${join(publishers)} ${
       version.yearpublished
-    }, Spieldauer ${playtime} Minuten`;
+    }, Spieldauer ${playtime} Minuten` + (minage ? `, ab ${minage} Jahren` : ``);
   };
 
   function selectWhole(event) {
