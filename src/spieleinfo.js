@@ -106,7 +106,7 @@ const Spieleinfo = styled(function(props) {
         ? `${minplaytime} – ${maxplaytime}`
         : `${minplaytime}`;
 
-    const age = (minage || minage !== '0') ? ` ab ${minage} Jahren` : ``;
+    const age = (minage && +minage !== 0) ? ` ab ${minage} Jahren` : ``;
 
     return `${join(designers)}: ${version.linkedname.toUpperCase()} für ${numPlayers} Personen${age} mit Illustration von ${join(artists)} bei ${join(publishers)} ${version.yearpublished}, Spieldauer ${playtime} Minuten`;
   };
