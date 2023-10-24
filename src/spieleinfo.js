@@ -108,7 +108,7 @@ const Spieleinfo = styled(function(props) {
 
     const age = (minage && +minage !== 0) ? ` ab ${minage} Jahren` : ``;
 
-    return `${join(designers)}: ${version.linkedname.toUpperCase()} für ${numPlayers} Personen${age} mit Illustration von ${join(artists)} bei ${join(publishers)} ${version.yearpublished}, Spieldauer ${playtime} Minuten`;
+    return `${join(designers)}: ${version.linkedname.toUpperCase()} für ${numPlayers} Personen${age} mit Illustration von ${join(artists)} bei ${join(publishers)} ${version.yearpublished}, Spieldauer ${playtime} Minuten, Made in ???`;
   };
 
   function selectWhole(event) {
