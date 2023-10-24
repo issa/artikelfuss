@@ -10,7 +10,7 @@ const GameVersion = styled(function({ className, version, chooseVersion }) {
     <li className={className} onClick={() => chooseVersion(version)}>
       <span>
         {version.images ? (
-            <a href={version.images.original} target="_blank"><ThumbnailImage src={version.images.thumb} /></a>
+            <a href={version.images.original} target="_blank" rel="noreferrer"><ThumbnailImage src={version.images.thumb} /></a>
         ) : (
           <MissingImage />
         )}
