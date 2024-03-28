@@ -86,7 +86,7 @@ const Spieleinfo = styled(function(props) {
     const version = props.version;
 
     const designers = links.boardgamedesigner.map(p => p.name);
-    const artists = links.boardgameartist.map(p => p.name);
+    const artists = version.links.boardgameartist.map(p => p.name);
     const publishers = version.links.boardgamepublisher.map(p => p.name);
 
     const join = people => {
